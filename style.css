@@ -1,0 +1,81 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #ff69b4;
+}
+
+.input-panel {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff85c5;
+}
+
+.hidden {
+  display: none;
+}
+
+#wish-message {
+  color: #ff69b4;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#share-section {
+  margin-top: 20px;
+}
+
+#share-link {
+  color: #ff69b4;
+  font-weight: bold;
+}
+
+.social-buttons {
+  margin-top: 10px;
+}
+
+.social-buttons button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.social-buttons button:hover {
+  background-color: #ff85c5;
+}
