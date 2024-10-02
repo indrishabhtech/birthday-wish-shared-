@@ -1,3 +1,6 @@
+
+<!--
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,25 +8,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Wishes 🎂🎈</title>
 
-  <!-- SEO Meta Tags -->
+   SEO Meta Tags 
   <meta name="description" content="Create personalized birthday wishes for your loved ones! Generate unique birthday quotes and share them instantly.">
   <meta name="keywords" content="birthday wishes generator, indrishabh19 , shyamji, codexrishabh, indrishabh, rishabh mishra pmptm ,personalized birthday quotes, birthday messages, happy birthday, share birthday wishes, create birthday wishes">
   <meta name="rishabh" content="https://birthday-wish-shared.netlify.app/">
   <meta name="robots" content="index, follow">
 
-  <!-- Social Media Tags (Open Graph for Facebook, Twitter Cards) -->
+   Social Media Tags (Open Graph for Facebook, Twitter Cards) 
   <meta property="og:title" content="Birthday Wishes Generator">
   <meta property="og:description" content="Create personalized birthday wishes and share them with friends and family.">
-  <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg"> <!-- Replace with a valid image URL -->
+  <meta property="og:image" content="https://birthday-wishes-shared.nrtlify.app/image.jpg">
   <meta property="og:url" content="https://birthday-wish-shared.netlify.app/">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Birthday Wishes Generator">
   <meta name="twitter:description" content="Generate personalized birthday quotes and share them with your loved ones.">
-  <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg"> <!-- Replace with a valid image URL -->
+  <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg">
 
-  <!-- Favicon -->
+  
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -37,13 +40,13 @@
   <div class="container">
     <h1 id="greeting">Create Amazing Birthday Wishes 🎂🎉</h1>
 
-    <!-- Input Panel for generating a link -->
+    <!-- Input Panel for generating a link 
     <div class="input-panel" id="input-panel">
       <input type="text" id="name" placeholder="Enter the birthday person's name" />
       <button onclick="generateLink()">Share Wishes</button>
     </div>
 
-    <!-- Share section for showing the generated link -->
+    <!-- Share section for showing the generated link 
     <div id="share-section" class="share-section hidden">
       <p>Share this link:</p>
       <input type="text" id="share-link" readonly />
@@ -57,5 +60,148 @@
   </div>
 
   <script src="script.js"></script>
+</body>
+</html>
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate and share personalized birthday wishes with a surprise scratch card reveal effect!">
+  <meta name="keywords" content="birthday, wishes, generator, surprise, scratch card, personalized, celebration">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Birthday Wish Surprise 🎂</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      color: #333;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    #wish-message {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+    }
+    button {
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff5236;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎁 Your Surprise Wish 🎉</h1>
+  <div id="wish-message">Happy Birthday, <span id="name-placeholder"></span>! 🎈</div>
+  <canvas id="scratchCanvas"></canvas>
+</div>
+
+<script>
+  const wishes = [
+    `🎂 Happy Birthday! 🎈 Wishing you a day filled with love and joy!`,
+    `🎉 May all your dreams come true! Have an amazing birthday! 🎊`,
+    `🎂 Cheers to you! May your special day be as incredible as you are! 🎉`,
+    `🎈 Wishing you all the happiness your heart can hold. Have a fantastic birthday! 🎂`,
+    // ... add more wishes here
+  ];
+
+  function getRandomWish(name) {
+    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+    return randomWish.replace('!', `, ${name}!`);
+  }
+
+  // Set the personalized wish on page load
+  window.onload = function() {
+    const path = window.location.pathname;
+    const name = decodeURIComponent(path.substring(1)) || "Friend"; // Get the name from the URL
+    const personalizedWish = getRandomWish(name);
+    document.getElementById('name-placeholder').textContent = name;
+    document.getElementById('wish-message').textContent = personalizedWish;
+
+    // Initialize the scratch effect
+    initializeScratchEffect();
+  };
+
+  function initializeScratchEffect() {
+    const canvas = document.getElementById('scratchCanvas');
+    const container = document.querySelector('.container');
+    const ctx = canvas.getContext('2d');
+
+    // Adjust canvas size to match the container
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+
+    // Fill the canvas with a solid color (scratch surface)
+    ctx.fillStyle = '#cccccc';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Scratch off effect
+    let isDrawing = false;
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    canvas.addEventListener('touchstart', startDrawing, { passive: true });
+    canvas.addEventListener('touchmove', draw, { passive: true });
+    canvas.addEventListener('touchend', stopDrawing);
+    
+    function startDrawing(e) {
+      isDrawing = true;
+      draw(e); // Start drawing immediately
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || e.touches[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+      // Define the area to clear (scratch)
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2, false);
+      ctx.fill();
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+  }
+</script>
+
 </body>
 </html>
