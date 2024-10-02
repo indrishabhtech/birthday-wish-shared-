@@ -1,4 +1,4 @@
-
+/*
 const wishes = [
   `🎂 Happy Birthday! 🎈 Wishing you a day filled with love and joy!`,
   `🎉 May all your dreams come true! Have an amazing birthday! 🎊`,
@@ -26,7 +26,9 @@ const wishes = [
   `🎂 Hope this birthday brings you everything you've been wishing for! 🎉`,
   `🎉 Celebrating you today! Here's to a year filled with love, laughter, and adventure! 🎂`,
 ];
+*/
 
+/*
 function generateLink() {
   const name = document.getElementById('name').value.trim();
   if (name) {
@@ -75,4 +77,54 @@ function shareOnTwitter() {
   window.open(twitterURL, '_blank');
 }
 
+*/
+
+const wishes = [
+  `🎂 Happy Birthday! 🎈 Wishing you a day filled with love and joy!`,
+  `🎉 May all your dreams come true! Have an amazing birthday! 🎊`,
+  `🎂 Cheers to you! May your special day be as incredible as you are! 🎉`,
+  `🎈 Wishing you all the happiness your heart can hold. Have a fantastic birthday! 🎂`,
+  // ...other wishes
+];
+
+// Function to generate a link
+function generateLink() {
+  const name = document.getElementById('name').value.trim();
+  if (name) {
+    const url = `https://birthday-wish-shared.netlify.app/${encodeURIComponent(name)}`;
+    document.getElementById('share-link').value = url;
+    document.getElementById('share-section').classList.remove('hidden');
+  } else {
+    alert('Please enter a name');
+  }
+}
+
+// Function to copy the link
+function copyLink() {
+  const link = document.getElementById('share-link');
+  link.select();
+  link.setSelectionRange(0, 99999); // For mobile devices
+
+  navigator.clipboard.writeText(link.value).then(() => {
+    alert('Link copied to clipboard');
+  }).catch((error) => {
+    console.error('Failed to copy text:', error);
+  });
+}
+
+// Function to extract name from URL and display birthday wish
+function displayWish() {
+  const path = window.location.pathname;
+  const name = decodeURIComponent(path.substring(1)); // Get the name from the URL
+
+  if (name) {
+    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+    const personalizedWish = randomWish.replace('!', `, ${name}!`);
+    document.getElementById('greeting').textContent = personalizedWish;
+    document.getElementById('input-panel').classList.add('hidden'); // Hide the input panel
+  }
+}
+
+// Call displayWish if a name exists in the URL
+window.onload = displayWish;
 
