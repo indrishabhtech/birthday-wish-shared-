@@ -26,35 +26,42 @@ const wishes = [
   `🎉 Celebrating you today, ${name}! Here's to a year filled with love, laughter, and adventure! 🎂`,
 ];
 
-function generateWishes() {
+
+
+
+function generateLink() {
   const name = document.getElementById('name').value;
   if (name) {
-    const randomWish = wishes[Math.floor(Math.random() * wishes.length)].replace(/\${name}/g, name);
-    document.getElementById('wish-message').innerText = randomWish;
-    document.getElementById('wishes-section').classList.remove('hidden');
+    const url = `https://birthday-wish-shared.netlify.app//${encodeURIComponent(name)}`;
+
+    document.getElementById('share-link').value = url;
+    document.getElementById('share-section').classList.remove('hidden');
   } else {
     alert('Please enter a name');
   }
 }
 
-function generateLink() {
-  const name = document.getElementById('name').value;
-  const url = `https://mybirthdaywishes.com/${encodeURIComponent(name)}`;
+function copyLink() {
+  const link = document.getElementById('share-link');
+  link.select();
+  link.setSelectionRange(0, 99999); // For mobile devices
 
-  document.getElementById('share-link').innerText = url;
-  document.getElementById('share-link').setAttribute('href', url);
-  document.getElementById('share-section').classList.remove('hidden');
+  navigator.clipboard.writeText(link.value).then(() => {
+    alert('Link copied to clipboard');
+  }).catch((error) => {
+    console.error('Failed to copy text:', error);
+  });
 }
 
 function shareOnWhatsApp() {
   const name = document.getElementById('name').value;
-  const message = encodeURIComponent(`Check out this awesome birthday wish for ${name}: ${document.getElementById('share-link').href}`);
+  const message = encodeURIComponent(`Check out this awesome birthday wish for ${name}: ${document.getElementById('share-link').value}`);
   const whatsappURL = `https://api.whatsapp.com/send?text=${message}`;
   window.open(whatsappURL, '_blank');
 }
 
 function shareOnFacebook() {
-  const url = encodeURIComponent(document.getElementById('share-link').href);
+  const url = encodeURIComponent(document.getElementById('share-link').value);
   const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   window.open(facebookURL, '_blank');
 }
@@ -62,7 +69,13 @@ function shareOnFacebook() {
 function shareOnTwitter() {
   const name = document.getElementById('name').value;
   const message = encodeURIComponent(`Check out this amazing birthday wish for ${name}! 🎉`);
-  const url = encodeURIComponent(document.getElementById('share-link').href);
+  const url = encodeURIComponent(document.getElementById('share-link').value);
   const twitterURL = `https://twitter.com/intent/tweet?text=${message}&url=${url}`;
   window.open(twitterURL, '_blank');
 }
+
+
+
+
+
+
