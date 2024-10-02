@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Wishes🎈 🎂 OP</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Birthday Wishes Generator</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Create Amazing Birthday Wishes 🎂🎉</h1>
-    <div class="input-panel">
+    <h1 id="greeting">Create Amazing Birthday Wishes 🎂🎉</h1>
+
+    <!-- Input Panel for generating a link -->
+    <div class="input-panel" id="input-panel">
       <input type="text" id="name" placeholder="Enter the birthday person's name" />
       <button onclick="generateLink()">Share Wishes</button>
     </div>
-    
+
+    <!-- Share section for showing the generated link -->
     <div id="share-section" class="share-section hidden">
       <p>Share this link:</p>
       <input type="text" id="share-link" readonly />
