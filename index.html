@@ -1,105 +1,38 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Wishes Generator</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Create personalized birthday wishes for your loved ones! Generate unique birthday quotes and share them instantly.">
-  <meta name="keywords" content="birthday wishes generator, indrishabh19, shyamji, codexrishabh, indrishabh, rishabh mishra pmptm, personalized birthday quotes, birthday messages, happy birthday, share birthday wishes, create birthday wishes">
+  <meta name="keywords" content="indrishabh19, indrishabh, rishabh mishra pmptm, codexrishabh, rishabh mishra mirzapur, birthday wishes, personalized birthday quotes, birthday messages, happy birthday, share birthday wishes, create birthday wishes">
+  <meta name="Rishabh" content="Birthday wishes shared">
   <meta name="robots" content="index, follow">
-  <meta name="rishabh" content="https://birthday-wish-shared.netlify.app/">
 
   <!-- Social Media Tags (Open Graph for Facebook, Twitter Cards) -->
   <meta property="og:title" content="Birthday Wishes Generator">
   <meta property="og:description" content="Create personalized birthday wishes and share them with friends and family.">
-  <meta property="og:image" content="https://birthday-wishes-shared.netlify.app/image.jpg">
+  <meta property="og:image" content="https://yourwebsite.com/path-to-image.jpg">
   <meta property="og:url" content="https://birthday-wish-shared.netlify.app/">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Birthday Wishes Generator">
   <meta name="twitter:description" content="Generate personalized birthday quotes and share them with your loved ones.">
-  <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg">
+  <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg"> <!-- Replace with a valid image URL -->
 
   <!-- Favicon -->
+  
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Title -->
-  <title>Birthday Wishes Generator 🎂</title>
-
-  <!-- Styles -->
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-      margin: 0 20px;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #ff6f61;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      width: 100%;
-      margin-bottom: 15px;
-    }
-    button:hover {
-      background-color: #ff5236;
-    }
-    .share-section.hidden {
-      display: none;
-    }
-    .social-buttons button {
-      width: 32%;
-      margin: 5px 1%;
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-      button, input[type="text"] {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -124,43 +57,7 @@
     </div>
   </div>
 
-  <script>
-    function generateLink() {
-      const name = document.getElementById("name").value.trim();
-      if (name) {
-        const encodedName = encodeURIComponent(name);
-        const link = `${window.location.origin}/${encodedName}`;
-        document.getElementById("share-link").value = link;
-        document.getElementById("share-section").classList.remove("hidden");
-      }
-    }
-
-    function copyLink() {
-      const link = document.getElementById("share-link");
-      link.select();
-      link.setSelectionRange(0, 99999); // For mobile devices
-      document.execCommand("copy");
-      alert("Link copied: " + link.value);
-    }
-
-    function shareOnWhatsApp() {
-      const link = document.getElementById("share-link").value;
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(link)}`;
-      window.open(whatsappUrl, "_blank");
-    }
-
-    function shareOnFacebook() {
-      const link = document.getElementById("share-link").value;
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
-      window.open(facebookUrl, "_blank");
-    }
-
-    function shareOnTwitter() {
-      const link = document.getElementById("share-link").value;
-      const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}`;
-      window.open(twitterUrl, "_blank");
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
