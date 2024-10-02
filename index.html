@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Wishes Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Create Amazing Birthday Wishes 🎂🎉</h1>
+    <div class="input-panel">
+      <input type="text" id="name" placeholder="Enter the birthday person's name" />
+      <button onclick="generateWishes()">Generate Wishes</button>
+    </div>
+    
+    <div id="wishes-section" class="wishes-section hidden">
+      <h2 id="wish-message"></h2>
+      <button id="share-button" onclick="generateLink()">Share Wishes</button>
+    </div>
+
+
+<div id="share-section" class="share-section hidden">
+  <p>Share this link:</p>
+  <a id="share-link" href="#" target="_blank"></a>
+  <div class="social-buttons">
+    <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+    <button onclick="shareOnFacebook()">Share on Facebook</button>
+    <button onclick="shareOnTwitter()">Share on Twitter</button>
+  </div>
+</div>
+    
+
+  <script src="script.js"></script>
+</body>
+</html>
