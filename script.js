@@ -1,10 +1,3 @@
-function generateWishes() {
-  const name = document.getElementById('name').value;
-//  const wishes = [
-   // `🎂 Happy Birthday ${name}! 🎈 Wishing you a day filled with love and joy!`,
-   // `🎉 May all your dreams come true, ${name}! Have an amazing birthday! 🎊`,
-  //  `🎂 Cheers to you, ${name}! May your special day be as incredible as you are! 🎉`
- // ];
 const wishes = [
   `🎂 Happy Birthday ${name}! 🎈 Wishing you a day filled with love and joy!`,
   `🎉 May all your dreams come true, ${name}! Have an amazing birthday! 🎊`,
@@ -30,12 +23,13 @@ const wishes = [
   `🎂 Let's raise a toast to an incredible person, ${name}! May this year bring you happiness! 🎉`,
   `🎉 Every moment of today should be as special as you are, ${name}! Have a wonderful birthday! 🎈`,
   `🎂 Hope this birthday brings you everything you've been wishing for, ${name}! 🎉`,
-  `🎉 Celebrating you today, ${name!} Here's to a year filled with love, laughter, and adventure! 🎂`,
+  `🎉 Celebrating you today, ${name}! Here's to a year filled with love, laughter, and adventure! 🎂`,
 ];
 
-
+function generateWishes() {
+  const name = document.getElementById('name').value;
   if (name) {
-    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+    const randomWish = wishes[Math.floor(Math.random() * wishes.length)].replace(/\${name}/g, name);
     document.getElementById('wish-message').innerText = randomWish;
     document.getElementById('wishes-section').classList.remove('hidden');
   } else {
@@ -46,7 +40,7 @@ const wishes = [
 function generateLink() {
   const name = document.getElementById('name').value;
   const url = `https://mybirthdaywishes.com/${encodeURIComponent(name)}`;
-  
+
   document.getElementById('share-link').innerText = url;
   document.getElementById('share-link').setAttribute('href', url);
   document.getElementById('share-section').classList.remove('hidden');
@@ -72,32 +66,3 @@ function shareOnTwitter() {
   const twitterURL = `https://twitter.com/intent/tweet?text=${message}&url=${url}`;
   window.open(twitterURL, '_blank');
 }
-
-async function shortenUrl(longUrl) {
-  const accessToken = 'bitly_ACCESS_TOKEN'; 
-  const bitlyApiUrl = 'https://api-ssl.bitly.com/v4/shorten';
-
-  const response = await fetch(bitlyApiUrl, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ long_url: longUrl }),
-  });
-
-  const result = await response.json();
-  return result.link; 
-}
-
-async function generateLink() {
-  const name = document.getElementById('name').value;
-  const longUrl = `https://mybirthdaywishes.com/${encodeURIComponent(name)}`;
-
-  const shortUrl = await shortenUrl(longUrl);
-
-  document.getElementById('share-link').innerText = shortUrl;
-  document.getElementById('share-link').setAttribute('href', shortUrl);
-  document.getElementById('share-section').classList.remove('hidden');
-}
-
