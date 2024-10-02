@@ -66,7 +66,6 @@
 
 -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,6 +126,9 @@
   <canvas id="scratchCanvas"></canvas>
 </div>
 
+<!-- Include the confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
 <script>
   const wishes = [
     `🎂 Happy Birthday! 🎈 Wishing you a day filled with love and joy!`,
@@ -157,6 +159,7 @@
     const canvas = document.getElementById('scratchCanvas');
     const container = document.querySelector('.container');
     const ctx = canvas.getContext('2d');
+    const scratchThreshold = 0.5; // 50% of the canvas needs to be scratched to trigger the confetti
 
     // Adjust canvas size to match the container
     canvas.width = container.offsetWidth;
@@ -166,9 +169,10 @@
     ctx.fillStyle = '#cccccc';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Scratch off effect
     let isDrawing = false;
+    let totalScratched = 0;
 
+    // Scratch off effect
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
@@ -195,13 +199,61 @@
       ctx.beginPath();
       ctx.arc(x, y, 20, 0, Math.PI * 2, false);
       ctx.fill();
+
+      checkScratchCompletion();
     }
 
     function stopDrawing() {
       isDrawing = false;
+    }
+
+    // Check how much of the canvas has been scratched off
+    function checkScratchCompletion() {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const pixels = imageData.data;
+      let transparentPixels = 0;
+
+      // Count how many pixels are transparent
+      for (let i = 3; i < pixels.length; i += 4) {
+        if (pixels[i] === 0) transparentPixels++; // If alpha is 0 (transparent)
+      }
+
+      const scratchedPercentage = transparentPixels / (pixels.length / 4);
+
+      // Trigger confetti if enough of the canvas is scratched off
+      if (scratchedPercentage > scratchThreshold) {
+        triggerConfetti();
+        canvas.removeEventListener('mousemove', draw); // Stop further scratching
+        canvas.removeEventListener('touchmove', draw);
+      }
+    }
+
+    function triggerConfetti() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+
+      confetti({
+        particleCount: 150,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+
+      confetti({
+        particleCount: 150,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
     }
   }
 </script>
 
 </body>
 </html>
+
+
+    
