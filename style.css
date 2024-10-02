@@ -82,6 +82,44 @@ button:hover {
 */
 
 body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  color: #333;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+h1 {
+  font-size: 2.5rem;
+  color: #ff6f61;
+  margin-bottom: 20px;
+}
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+button {
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #ff5236;
+}
+
+
+/*
+body {
   font-family: 'Arial', sans-serif;
   background-color: #f0f8ff;
   text-align: center;
@@ -129,6 +167,9 @@ button {
 button:hover {
   background-color: #ff85c5;
 }
+*/
+
+
 
 .hidden {
   display: none;
