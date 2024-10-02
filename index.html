@@ -1,23 +1,21 @@
 
-<!--
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Wishes 🎂🎈</title>
 
-   SEO Meta Tags 
+  <!-- SEO Meta Tags -->
   <meta name="description" content="Create personalized birthday wishes for your loved ones! Generate unique birthday quotes and share them instantly.">
-  <meta name="keywords" content="birthday wishes generator, indrishabh19 , shyamji, codexrishabh, indrishabh, rishabh mishra pmptm ,personalized birthday quotes, birthday messages, happy birthday, share birthday wishes, create birthday wishes">
-  <meta name="rishabh" content="https://birthday-wish-shared.netlify.app/">
+  <meta name="keywords" content="birthday wishes generator, indrishabh19, shyamji, codexrishabh, indrishabh, rishabh mishra pmptm, personalized birthday quotes, birthday messages, happy birthday, share birthday wishes, create birthday wishes">
   <meta name="robots" content="index, follow">
+  <meta name="rishabh" content="https://birthday-wish-shared.netlify.app/">
 
-   Social Media Tags (Open Graph for Facebook, Twitter Cards) 
+  <!-- Social Media Tags (Open Graph for Facebook, Twitter Cards) -->
   <meta property="og:title" content="Birthday Wishes Generator">
   <meta property="og:description" content="Create personalized birthday wishes and share them with friends and family.">
-  <meta property="og:image" content="https://birthday-wishes-shared.nrtlify.app/image.jpg">
+  <meta property="og:image" content="https://birthday-wishes-shared.netlify.app/image.jpg">
   <meta property="og:url" content="https://birthday-wish-shared.netlify.app/">
   <meta property="og:type" content="website">
 
@@ -26,83 +24,48 @@
   <meta name="twitter:description" content="Generate personalized birthday quotes and share them with your loved ones.">
   <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg">
 
-  
+  <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-  
-   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-  
-</head>
-<body>
-  <div class="container">
-    <h1 id="greeting">Create Amazing Birthday Wishes 🎂🎉</h1>
+  <!-- Title -->
+  <title>Birthday Wishes Generator 🎂</title>
 
-    <!-- Input Panel for generating a link 
-    <div class="input-panel" id="input-panel">
-      <input type="text" id="name" placeholder="Enter the birthday person's name" />
-      <button onclick="generateLink()">Share Wishes</button>
-    </div>
-
-    <!-- Share section for showing the generated link 
-    <div id="share-section" class="share-section hidden">
-      <p>Share this link:</p>
-      <input type="text" id="share-link" readonly />
-      <button onclick="copyLink()">Copy Link</button>
-      <div class="social-buttons">
-        <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-        <button onclick="shareOnFacebook()">Share on Facebook</button>
-        <button onclick="shareOnTwitter()">Share on Twitter</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
-
--->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generate and share personalized birthday wishes with a surprise scratch card reveal effect!">
-  <meta name="keywords" content="birthday, wishes, generator, surprise, scratch card, personalized, celebration">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>Birthday Wish Surprise 🎂</title>
+  <!-- Styles -->
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to right, #ffecd2, #fcb69f);
-      color: #333;
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
     .container {
-      text-align: center;
-      background: white;
+      background-color: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      position: relative;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 20px;
     }
-    #wish-message {
-      font-size: 1.5rem;
+    h1 {
+      font-size: 1.8rem;
       margin-bottom: 20px;
     }
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      cursor: pointer;
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
     }
     button {
       background-color: #ff6f61;
@@ -111,15 +74,33 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 1rem;
       transition: background-color 0.3s ease;
+      width: 100%;
+      margin-bottom: 15px;
     }
     button:hover {
       background-color: #ff5236;
     }
+    .share-section.hidden {
+      display: none;
+    }
+    .social-buttons button {
+      width: 32%;
+      margin: 5px 1%;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      button, input[type="text"] {
+        font-size: 0.9rem;
+      }
+    }
   </style>
-</head>
-<body>
 
+</head>
 <body>
   <div class="container">
     <h1 id="greeting">Create Amazing Birthday Wishes 🎂🎉</h1>
@@ -142,141 +123,44 @@
       </div>
     </div>
   </div>
-  
-<div class="container">
-  <h1>🎁 Your Surprise Wish 🎉</h1>
-  <div id="wish-message">Happy Birthday, <span id="name-placeholder"></span>! 🎈</div>
-  <canvas id="scratchCanvas"></canvas>
-</div>
 
-<!-- Include the confetti library -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-<script>
-  const wishes = [
-    `🎂 Happy Birthday! 🎈 Wishing you a day filled with love and joy!`,
-    `🎉 May all your dreams come true! Have an amazing birthday! 🎊`,
-    `🎂 Cheers to you! May your special day be as incredible as you are! 🎉`,
-    `🎈 Wishing you all the happiness your heart can hold. Have a fantastic birthday! 🎂`,
-    // ... add more wishes here
-  ];
-
-  function getRandomWish(name) {
-    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-    return randomWish.replace('!', `, ${name}!`);
-  }
-
-  // Set the personalized wish on page load
-  window.onload = function() {
-    const path = window.location.pathname;
-    const name = decodeURIComponent(path.substring(1)) || "Friend"; // Get the name from the URL
-    const personalizedWish = getRandomWish(name);
-    document.getElementById('name-placeholder').textContent = name;
-    document.getElementById('wish-message').textContent = personalizedWish;
-
-    // Initialize the scratch effect
-    initializeScratchEffect();
-  };
-
-  function initializeScratchEffect() {
-    const canvas = document.getElementById('scratchCanvas');
-    const container = document.querySelector('.container');
-    const ctx = canvas.getContext('2d');
-    const scratchThreshold = 0.5; // 50% of the canvas needs to be scratched to trigger the confetti
-
-    // Adjust canvas size to match the container
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
-
-    // Fill the canvas with a solid color (scratch surface)
-    ctx.fillStyle = '#cccccc';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    let isDrawing = false;
-    let totalScratched = 0;
-
-    // Scratch off effect
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
-    canvas.addEventListener('mouseout', stopDrawing);
-
-    canvas.addEventListener('touchstart', startDrawing, { passive: true });
-    canvas.addEventListener('touchmove', draw, { passive: true });
-    canvas.addEventListener('touchend', stopDrawing);
-    
-    function startDrawing(e) {
-      isDrawing = true;
-      draw(e); // Start drawing immediately
-    }
-
-    function draw(e) {
-      if (!isDrawing) return;
-
-      const rect = canvas.getBoundingClientRect();
-      const x = (e.clientX || e.touches[0].clientX) - rect.left;
-      const y = (e.clientY || e.touches[0].clientY) - rect.top;
-
-      // Define the area to clear (scratch)
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 20, 0, Math.PI * 2, false);
-      ctx.fill();
-
-      checkScratchCompletion();
-    }
-
-    function stopDrawing() {
-      isDrawing = false;
-    }
-
-    // Check how much of the canvas has been scratched off
-    function checkScratchCompletion() {
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const pixels = imageData.data;
-      let transparentPixels = 0;
-
-      // Count how many pixels are transparent
-      for (let i = 3; i < pixels.length; i += 4) {
-        if (pixels[i] === 0) transparentPixels++; // If alpha is 0 (transparent)
-      }
-
-      const scratchedPercentage = transparentPixels / (pixels.length / 4);
-
-      // Trigger confetti if enough of the canvas is scratched off
-      if (scratchedPercentage > scratchThreshold) {
-        triggerConfetti();
-        canvas.removeEventListener('mousemove', draw); // Stop further scratching
-        canvas.removeEventListener('touchmove', draw);
+  <script>
+    function generateLink() {
+      const name = document.getElementById("name").value.trim();
+      if (name) {
+        const encodedName = encodeURIComponent(name);
+        const link = `${window.location.origin}/${encodedName}`;
+        document.getElementById("share-link").value = link;
+        document.getElementById("share-section").classList.remove("hidden");
       }
     }
 
-    function triggerConfetti() {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-
-      confetti({
-        particleCount: 150,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-
-      confetti({
-        particleCount: 150,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
+    function copyLink() {
+      const link = document.getElementById("share-link");
+      link.select();
+      link.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand("copy");
+      alert("Link copied: " + link.value);
     }
-  }
-</script>
+
+    function shareOnWhatsApp() {
+      const link = document.getElementById("share-link").value;
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(link)}`;
+      window.open(whatsappUrl, "_blank");
+    }
+
+    function shareOnFacebook() {
+      const link = document.getElementById("share-link").value;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+      window.open(facebookUrl, "_blank");
+    }
+
+    function shareOnTwitter() {
+      const link = document.getElementById("share-link").value;
+      const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}`;
+      window.open(twitterUrl, "_blank");
+    }
+  </script>
 
 </body>
 </html>
-
-
-    
