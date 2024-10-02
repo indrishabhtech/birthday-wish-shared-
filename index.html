@@ -120,6 +120,29 @@
 </head>
 <body>
 
+<body>
+  <div class="container">
+    <h1 id="greeting">Create Amazing Birthday Wishes 🎂🎉</h1>
+
+    <!-- Input Panel for generating a link -->
+    <div class="input-panel" id="input-panel">
+      <input type="text" id="name" placeholder="Enter the birthday person's name" />
+      <button onclick="generateLink()">Share Wishes</button>
+    </div>
+
+    <!-- Share section for showing the generated link -->
+    <div id="share-section" class="share-section hidden">
+      <p>Share this link:</p>
+      <input type="text" id="share-link" readonly />
+      <button onclick="copyLink()">Copy Link</button>
+      <div class="social-buttons">
+        <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+        <button onclick="shareOnFacebook()">Share on Facebook</button>
+        <button onclick="shareOnTwitter()">Share on Twitter</button>
+      </div>
+    </div>
+  </div>
+  
 <div class="container">
   <h1>🎁 Your Surprise Wish 🎉</h1>
   <div id="wish-message">Happy Birthday, <span id="name-placeholder"></span>! 🎈</div>
