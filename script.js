@@ -100,6 +100,81 @@ window.onload = displayWish;
     
 
 
+// Function to trigger confetti
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+
+// Call displayWish if a name exists in the URL
+window.onload = function() {
+  displayWish();
+  
+  // Trigger confetti after 4 seconds
+  setTimeout(triggerConfetti, 4000);
+};
+
+
+let currentWishIndex = 0;
+const visibleWishes = wishes.slice(0, 5); // Show only the first 5 wishes
+
+// Function to display a specific wish
+function displayCurrentWish(name) {
+  const wish = visibleWishes[currentWishIndex].replace('!', `, ${name}!`);
+  document.getElementById('greeting').textContent = wish;
+}
+
+// Handle "Next" and "Previous" button clicks
+function showNextWish(name) {
+  if (currentWishIndex < visibleWishes.length - 1) {
+    currentWishIndex++;
+    displayCurrentWish(name);
+  } else {
+    triggerBalloonsAndCandles(); // Show balloons and blowout candles on last wish
+  }
+}
+
+function showPreviousWish(name) {
+  if (currentWishIndex > 0) {
+    currentWishIndex--;
+    displayCurrentWish(name);
+  }
+}
+
+// Function to trigger balloons and blowout candles
+function triggerBalloonsAndCandles() {
+  // Balloon and blowout animations go here
+  alert('Balloons and Candles Blowing Out!'); // You can replace this with actual animations
+
+  setTimeout(() => {
+    location.reload(); // Reload the page after animation
+  }, 3000);
+}
+
+// Modify displayWish to handle navigation
+function displayWish() {
+  const path = window.location.pathname;
+  const name = decodeURIComponent(path.substring(1)); // Get the name from the URL
+
+  if (name) {
+    displayCurrentWish(name); // Display the first wish
+
+    // Show navigation buttons after displaying the first wish
+    const navButtons = `
+      <div id="nav-buttons">
+        <button onclick="showPreviousWish('${name}')">⏮️ Previous</button>
+        <button onclick="showNextWish('${name}')">⏭️ Next</button>
+      </div>
+    `;
+    document.querySelector('.container').insertAdjacentHTML('beforeend', navButtons);
+
+    document.getElementById('input-panel').classList.add('hidden'); // Hide the input panel
+    document.getElementById('share-section').classList.add('hidden'); // Hide the share panel
+  }
+}
 
 
 
