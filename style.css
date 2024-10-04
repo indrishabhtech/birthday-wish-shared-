@@ -225,3 +225,24 @@ button:hover {
     padding: 8px;
   }
 }
+
+
+#nav-buttons {
+  margin-top: 20px;
+}
+
+#nav-buttons button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#nav-buttons button:hover {
+  background-color: #ff85c5;
+}
+
+
