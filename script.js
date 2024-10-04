@@ -100,13 +100,15 @@ window.onload = displayWish;
     
 
 
-// Function to trigger confetti
+// Function to trigger confetti at intervals
 function triggerConfetti() {
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+  setInterval(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }, 2500); // Confetti triggered every 2.5 seconds
 }
 
 // Call displayWish if a name exists in the URL
@@ -127,15 +129,16 @@ function displayCurrentWish(name) {
   document.getElementById('greeting').textContent = wish;
 }
 
-// Handle "Next" and "Previous" button clicks
-function showNextWish(name) {
-  if (currentWishIndex < visibleWishes.length - 1) {
-    currentWishIndex++;
-    displayCurrentWish(name);
-  } else {
-    triggerBalloonsAndCandles(); // Show balloons and blowout candles on last wish
-  }
-}
+
+
+
+
+
+
+
+
+
+
 
 function showPreviousWish(name) {
   if (currentWishIndex > 0) {
@@ -144,15 +147,51 @@ function showPreviousWish(name) {
   }
 }
 
-// Function to trigger balloons and blowout candles
+// Function to trigger balloons and blowout candles animation
 function triggerBalloonsAndCandles() {
-  // Balloon and blowout animations go here
-  alert('Balloons and Candles Blowing Out!'); // You can replace this with actual animations
+  const container = document.querySelector('.container');
 
-  setTimeout(() => {
-    location.reload(); // Reload the page after animation
-  }, 3000);
+  // Create balloon elements
+  for (let i = 0; i < 5; i++) {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    balloon.style.left = `${20 + i * 60}px`; // Positioning the balloons
+    container.appendChild(balloon);
+    
+    // Animate balloons using anime.js
+    anime({
+      targets: balloon,
+      translateY: [-500, 0],
+      duration: 3000,
+      easing: 'easeInOutQuad',
+      loop: false,
+      complete: () => {
+        balloon.remove(); // Remove balloons after animation
+      }
+    });
+  }
+
+  // Candle animation (flame blowing out)
+  const candle = document.createElement('div');
+  candle.className = 'candle';
+  container.appendChild(candle);
+
+  const flame = document.createElement('div');
+  flame.className = 'flame';
+  candle.appendChild(flame);
+
+  anime({
+    targets: flame,
+    scale: [1, 0],
+    duration: 2000,
+    easing: 'easeInOutQuad',
+    complete: () => {
+      flame.remove(); // Remove flame after blowing out
+      setTimeout(() => location.reload(), 1000); // Reload the page after 1 second
+    }
+  });
 }
+
 
 // Modify displayWish to handle navigation
 function displayWish() {
@@ -177,4 +216,24 @@ function displayWish() {
 }
 
 
+// Function to trigger confetti at intervals
+function triggerConfetti() {
+  setInterval(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }, 2500); // Confetti triggered every 2.5 seconds
+}
+
+
+function showNextWish(name) {
+  if (currentWishIndex < visibleWishes.length - 1) {
+    currentWishIndex++;
+    displayCurrentWish(name);
+  } else {
+    triggerBalloonsAndCandles(); // Show balloons and blowout candles on last wish
+  }
+}
 
