@@ -237,3 +237,52 @@ function showNextWish(name) {
   }
 }
 
+// Function to insert user's name and display cake
+function displayCake(name) {
+  const userNameElement = document.getElementById('user-name');
+  userNameElement.textContent = `Happy Birthday, ${name}!`;
+}
+
+// Function to trigger balloon animation
+function triggerBalloons() {
+  const container = document.querySelector('.container');
+
+  // Create balloon elements
+  for (let i = 0; i < 5; i++) {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    balloon.style.left = `${20 + i * 60}px`; // Positioning the balloons
+    container.appendChild(balloon);
+
+    // Remove balloon after animation ends
+    setTimeout(() => balloon.remove(), 8000);
+  }
+}
+
+// Candle flame animation
+function blowOutCandles() {
+  const flames = document.querySelectorAll('.flame');
+  anime({
+    targets: flames,
+    scale: [1, 0],
+    duration: 2000,
+    easing: 'easeInOutQuad',
+  });
+}
+
+// Display cake and start animations
+function displayBirthdayScene() {
+  const path = window.location.pathname;
+  const name = decodeURIComponent(path.substring(1)); // Get the name from URL
+
+  if (name) {
+    displayCake(name);  // Display the user's name on the cake
+    blowOutCandles();   // Animate the candle flames
+    triggerBalloons();  // Start the balloon animation
+
+    // Reload the page 12 seconds after the balloons finish
+    setTimeout(() => location.reload(), 20000); // 20 seconds total
+  }
+}
+
+window.onload = displayBirthdayScene;
