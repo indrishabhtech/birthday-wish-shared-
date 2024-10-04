@@ -285,3 +285,76 @@ button:hover {
   top: -20px;
 }
 
+/* Balloon animation */
+.balloon {
+  width: 50px;
+  height: 80px;
+  background-color: #ff6f61;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -100px;
+  animation: float-up 8s ease-in-out forwards;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  }
+
+
+
+/* Cake container */
+.cake {
+  width: 250px;
+  height: 150px;
+  background-color: #d2691e; /* Cake color */
+  border-radius: 15px;
+  position: relative;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Candle styles */
+.candle {
+  width: 10px;
+  height: 50px;
+  background-color: #ffdf00;
+  position: absolute;
+  bottom: 100px;
+  border-radius: 5px;
+}
+
+.candle:nth-child(1) { left: 30px; }
+.candle:nth-child(2) { left: 80px; }
+.candle:nth-child(3) { left: 130px; }
+.candle:nth-child(4) { left: 180px; }
+.candle:nth-child(5) { left: 230px; }
+
+/* Candle flame */
+.flame {
+  width: 10px;
+  height: 10px;
+  background-color: #ff6f61;
+  border-radius: 50%;
+  position: relative;
+  top: -10px;
+}
+
+/* User's name on cake */
+.cake-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+  
