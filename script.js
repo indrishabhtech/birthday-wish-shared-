@@ -28,8 +28,6 @@ const wishes = [
 ];
 
 
-
-
 // Function to generate a link
 function generateLink() {
   const name = document.getElementById('name').value.trim();
@@ -79,58 +77,14 @@ function shareOnTwitter() {
   window.open(twitterURL, '_blank');
 }
 
-// Function to extract name from URL and display birthday wish
-function displayWish() {
-  const path = window.location.pathname;
-  const name = decodeURIComponent(path.substring(1)); // Get the name from the URL
-
-  if (name) {
-    const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-    const personalizedWish = randomWish.replace('!', `, ${name}!`);
-    document.getElementById('greeting').textContent = personalizedWish;
-    document.getElementById('input-panel').classList.add('hidden'); // Hide the input panel
-    document.getElementById('share-section').classList.add('hidden'); // Hide the share panel
-  }
-}
-
-// Call displayWish if a name exists in the URL
-window.onload = displayWish;
-      
-    
-    
-
-
-// Function to trigger confetti at intervals
-function triggerConfetti() {
-  setInterval(() => {
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-  }, 2500); // Confetti triggered every 2.5 seconds
-}
-
-// Call displayWish if a name exists in the URL
-window.onload = function() {
-  displayWish();
-  
-  // Trigger confetti after 4 seconds
-  setTimeout(triggerConfetti, 4000);
-};
-
-
+// Function to display the current wish
 let currentWishIndex = 0;
-const visibleWishes = wishes.slice(0, 5); // Show only the first 5 wishes
+const visibleWishes = wishes.slice(0, 5); // Only display the first 5 wishes
 
-// Function to display a specific wish
 function displayCurrentWish(name) {
   const wish = visibleWishes[currentWishIndex].replace('!', `, ${name}!`);
   document.getElementById('greeting').textContent = wish;
 }
-
-
-
 
 function showPreviousWish(name) {
   if (currentWishIndex > 0) {
@@ -139,7 +93,16 @@ function showPreviousWish(name) {
   }
 }
 
-// Function to trigger balloons and blowout candles animation
+function showNextWish(name) {
+  if (currentWishIndex < visibleWishes.length - 1) {
+    currentWishIndex++;
+    displayCurrentWish(name);
+  } else {
+    triggerBalloonsAndCandles(); // Show balloons and blowout candles on the last wish
+  }
+}
+
+// Function to display the cake and animate balloons and candles
 function triggerBalloonsAndCandles() {
   const container = document.querySelector('.container');
 
@@ -179,19 +142,25 @@ function triggerBalloonsAndCandles() {
     easing: 'easeInOutQuad',
     complete: () => {
       flame.remove(); // Remove flame after blowing out
-      setTimeout(() => location.reload(), 5000); // Reload the page after 1 second
+      setTimeout(() => location.reload(), 5000); // Reload the page after 5 seconds
     }
   });
 }
 
+// Function to display the cake
+function displayCake(name) {
+  const userNameElement = document.getElementById('user-name');
+  userNameElement.textContent = `Happy Birthday, ${name}!`;
+}
 
-// Modify displayWish to handle navigation
-function displayWish() {
+// Display wish and cake
+function displayWishAndCake() {
   const path = window.location.pathname;
   const name = decodeURIComponent(path.substring(1)); // Get the name from the URL
 
   if (name) {
     displayCurrentWish(name); // Display the first wish
+    displayCake(name);        // Display the cake
 
     // Show navigation buttons after displaying the first wish
     const navButtons = `
@@ -202,13 +171,21 @@ function displayWish() {
     `;
     document.querySelector('.container').insertAdjacentHTML('beforeend', navButtons);
 
-    document.getElementById('input-panel').classList.add('hidden'); // Hide the input panel
-    document.getElementById('share-section').classList.add('hidden'); // Hide the share panel
+    // Hide input and share sections
+    document.getElementById('input-panel').classList.add('hidden');
+    document.getElementById('share-section').classList.add('hidden');
   }
 }
 
+// Single onload function to handle both wish and cake display
+window.onload = function() {
+  displayWishAndCake();
 
-// Function to trigger confetti at intervals
+  // Trigger confetti after 4 seconds
+  setTimeout(triggerConfetti, 4000);
+};
+
+// Confetti trigger
 function triggerConfetti() {
   setInterval(() => {
     confetti({
@@ -220,35 +197,5 @@ function triggerConfetti() {
 }
 
 
-function showNextWish(name) {
-  if (currentWishIndex < visibleWishes.length - 1) {
-    currentWishIndex++;
-    displayCurrentWish(name);
-  } else {
-    triggerBalloonsAndCandles(); // Show balloons and blowout candles on last wish
-  }
-}
-
-// Function to insert user's name and display cake
-function displayCake(name) {
-  const userNameElement = document.getElementById('user-name');
-  userNameElement.textContent = `Happy Birthday, ${name}!`;
-}
 
 
-// Display cake and start animations
-function displayBirthdayScene() {
-  const path = window.location.pathname;
-  const name = decodeURIComponent(path.substring(1)); // Get the name from URL
-
-  if (name) {
-    displayCake(name);  // Display the user's name on the cake
-    blowOutCandles();   // Animate the candle flames
-    triggerBalloons();  // Start the balloon animation
-
-    // Reload the page 12 seconds after the balloons finish
-    setTimeout(() => location.reload(), 20000); // 20 seconds total
-  }
-}
-
-window.onload = displayBirthdayScene;
