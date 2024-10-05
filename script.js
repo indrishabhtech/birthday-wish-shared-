@@ -228,3 +228,27 @@ function showNextWish(name) {
     triggerBalloonsAndCandles(); // Show balloons and blowout candles on last wish
   }
 }
+
+// Function to insert user's name and display cake
+function displayCake(name) {
+  const userNameElement = document.getElementById('user-name');
+  userNameElement.textContent = `Happy Birthday, ${name}!`;
+}
+
+
+// Display cake and start animations
+function displayBirthdayScene() {
+  const path = window.location.pathname;
+  const name = decodeURIComponent(path.substring(1)); // Get the name from URL
+
+  if (name) {
+    displayCake(name);  // Display the user's name on the cake
+    blowOutCandles();   // Animate the candle flames
+    triggerBalloons();  // Start the balloon animation
+
+    // Reload the page 12 seconds after the balloons finish
+    setTimeout(() => location.reload(), 20000); // 20 seconds total
+  }
+}
+
+window.onload = displayBirthdayScene;
