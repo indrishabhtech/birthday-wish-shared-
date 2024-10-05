@@ -133,14 +133,7 @@ function displayCurrentWish(name) {
 
 
 
-function showNextWish(name) {
-  if (currentWishIndex < visibleWishes.length - 1) {
-    currentWishIndex++;
-    displayCurrentWish(name);
-  } else {
-    triggerBalloonsAndCandles(name); // Show balloons and cake animation on last wish
-  }
-}
+
 
 
 
@@ -153,14 +146,6 @@ function showPreviousWish(name) {
     displayCurrentWish(name);
   }
 }
-
-// Function to insert user's name and display cake
-function displayCake(name) {
-  const userNameElement = document.getElementById('user-name');
-  userNameElement.textContent = `Happy Birthday, ${name}!`;
-}
-
-
 
 // Function to trigger balloons and blowout candles animation
 function triggerBalloonsAndCandles() {
@@ -186,37 +171,6 @@ function triggerBalloonsAndCandles() {
     });
   }
 
-
-
-// Candle flame animation with blinking effect
-function blinkCandles() {
-  const flames = document.querySelectorAll('.flame');
-  setInterval(() => {
-    flames.forEach(flame => flame.classList.toggle('flame-active'));
-  }, 400); // Blinking effect every 0.4 seconds
-}
-
-// Display cake, animate candles, and start balloons animation
-function triggerBalloonsAndCandles(name) {
-  displayCake(name); // Show the cake with user's name
-  blinkCandles(); // Blink the candle flames
-  triggerBalloons(); // Start the balloon animation
-
-  // Reload the page after 12 seconds
-  setTimeout(() => location.reload(), 12000);
-}
-
-
-  
-
-
-
-
-  
-
-
-
-  
   // Candle animation (flame blowing out)
   const candle = document.createElement('div');
   candle.className = 'candle';
@@ -260,32 +214,6 @@ function displayWish() {
     document.getElementById('share-section').classList.add('hidden'); // Hide the share panel
   }
 }
-
-
-// Function to display the first wish and navigation buttons
-function displayWish() {
-  const path = window.location.pathname;
-  const name = decodeURIComponent(path.substring(1)); // Get the name from the URL
-
-  if (name) {
-    displayCurrentWish(name); // Display the first wish
-
-    // Show navigation buttons after displaying the first wish
-    const navButtons = `
-      <div id="nav-buttons">
-        <button onclick="showPreviousWish('${name}')">⏮️ Previous</button>
-        <button onclick="showNextWish('${name}')">⏭️ Next</button>
-      </div>
-    `;
-
-document.querySelector('.container').insertAdjacentHTML('beforeend', navButtons);
-
-    document.getElementById('input-panel').classList.add('hidden'); // Hide the input panel
-    document.getElementById('share-section').classList.add('hidden'); // Hide the share panel
-  }
-}
-
-window.onload = displayWish;
 
 
 // Function to trigger confetti at intervals
@@ -356,8 +284,5 @@ function displayBirthdayScene() {
     setTimeout(() => location.reload(), 20000); // 20 seconds total
   }
 }
-
-
-
 
 window.onload = displayBirthdayScene;
