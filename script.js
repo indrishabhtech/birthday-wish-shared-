@@ -132,14 +132,6 @@ function displayCurrentWish(name) {
 
 
 
-
-
-
-
-
-
-
-
 function showPreviousWish(name) {
   if (currentWishIndex > 0) {
     currentWishIndex--;
@@ -152,7 +144,7 @@ function triggerBalloonsAndCandles() {
   const container = document.querySelector('.container');
 
   // Create balloon elements
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 7; i++) {
     const balloon = document.createElement('div');
     balloon.className = 'balloon';
     balloon.style.left = `${20 + i * 60}px`; // Positioning the balloons
@@ -162,7 +154,7 @@ function triggerBalloonsAndCandles() {
     anime({
       targets: balloon,
       translateY: [-500, 0],
-      duration: 3000,
+      duration: 6000,
       easing: 'easeInOutQuad',
       loop: false,
       complete: () => {
@@ -183,11 +175,11 @@ function triggerBalloonsAndCandles() {
   anime({
     targets: flame,
     scale: [1, 0],
-    duration: 2000,
+    duration: 6000,
     easing: 'easeInOutQuad',
     complete: () => {
       flame.remove(); // Remove flame after blowing out
-      setTimeout(() => location.reload(), 1000); // Reload the page after 1 second
+      setTimeout(() => location.reload(), 5000); // Reload the page after 1 second
     }
   });
 }
